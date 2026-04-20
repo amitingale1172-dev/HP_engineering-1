@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HP ENGINEERING | VMC &amp; CNC Manufacturing</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #00E5FF;
+  --orange: #FF6B2B;
+  --green: #00FF88;
+  --steel: #7799BB;
+  --bg: #020408;
+  --bg2: #050C14;
+  --bg3: #080F18;
+  --grid: rgba(0,229,255,0.055);
+  --border: rgba(0,229,255,0.14);
+  --text: #E0F0FF;
+  --muted: #3a5a7a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:64px 64px;pointer-events:none;z-index:0;
+}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--cyan);}
+
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:14px 60px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(2,4,8,0.7);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);transition:background 0.4s;
+}
+.nav-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:20px;color:var(--cyan);letter-spacing:4px;text-decoration:none;}
+.nav-logo span{color:var(--orange);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--steel);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-cta{
+  padding:9px 22px;border:1px solid var(--cyan);color:var(--cyan);
+  font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:2px;
+  background:transparent;cursor:pointer;transition:all 0.3s;text-decoration:none;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.nav-cta:hover{background:var(--cyan);color:var(--bg);}
+
+/* HERO */
+#hero{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;}
+#pc{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;}
+.hero-content{position:relative;z-index:10;padding:0 60px;max-width:700px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:6px 18px;border:1px solid rgba(0,229,255,0.35);background:rgba(0,229,255,0.04);
+  font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:2.5px;
+  margin-bottom:30px;
+}
+.hero-badge .dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(52px,7.5vw,100px);line-height:0.92;margin-bottom:6px;}
+.hero-title .t1{color:var(--text);display:block;}
+.hero-title .t2{color:var(--cyan);display:block;text-shadow:0 0 50px rgba(0,229,255,0.45);animation:glitch 9s infinite;}
+@keyframes glitch{
+  0%,93%,100%{text-shadow:0 0 50px rgba(0,229,255,0.45);transform:none;}
+  94%{transform:translate(4px,-2px);text-shadow:-4px 0 rgba(255,107,43,0.9),4px 0 rgba(0,229,255,0.9);}
+  95%{transform:translate(-4px,2px);text-shadow:4px 0 rgba(255,107,43,0.9),-4px 0 rgba(0,229,255,0.9);}
+  96%{transform:translate(2px,0);text-shadow:0 0 50px rgba(0,229,255,0.45);}
+  97%{transform:none;}
+}
+.hero-title .t3{color:var(--orange);display:block;font-size:0.38em;letter-spacing:8px;margin-top:8px;text-shadow:0 0 30px rgba(255,107,43,0.5);}
+.hero-sub{font-size:17px;font-weight:400;color:var(--steel);letter-spacing:0.5px;margin:28px 0 40px;max-width:480px;line-height:1.7;}
+.hero-sub em{color:var(--cyan);font-style:normal;font-weight:600;}
+.hero-acts{display:flex;gap:14px;align-items:center;}
+.btn1{padding:13px 34px;background:var(--cyan);color:var(--bg);font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:2px;font-weight:700;border:none;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all 0.3s;}
+.btn1:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,229,255,0.3);}
+.btn2{padding:13px 34px;background:transparent;color:var(--text);font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:2px;font-weight:600;border:1px solid rgba(255,255,255,0.15);cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all 0.3s;}
+.btn2:hover{border-color:var(--cyan);color:var(--cyan);}
+.hero-machine{position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:58%;z-index:5;opacity:0.88;}
+
+/* TICKER */
+.ticker-wrap{position:relative;z-index:10;background:rgba(0,229,255,0.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
+.ticker-inner{display:flex;animation:ticker 35s linear infinite;width:max-content;}
+.ticker-item{display:flex;align-items:center;gap:14px;padding:18px 52px;white-space:nowrap;border-right:1px solid var(--border);}
+.tval{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:700;color:var(--cyan);}
+.tlbl{font-size:12px;font-weight:600;letter-spacing:2px;color:var(--steel);text-transform:uppercase;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* SECTIONS */
+section{position:relative;z-index:10;}
+.s-header{text-align:center;margin-bottom:60px;}
+.s-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;display:block;}
+.s-title{font-family:'Orbitron',sans-serif;font-size:clamp(26px,3.5vw,44px);font-weight:700;color:var(--text);line-height:1.2;}
+.s-title span{color:var(--cyan);}
+
+/* CAPABILITIES */
+#capabilities{padding:96px 60px;}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+.cap-card{background:var(--bg2);padding:38px 32px;position:relative;overflow:hidden;transition:background 0.4s;cursor:default;}
+.cap-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:transform 0.4s;}
+.cap-card:hover::before{transform:scaleX(1);}
+.cap-card:hover{background:var(--bg3);}
+.cap-num{position:absolute;top:18px;right:22px;font-family:'Orbitron',sans-serif;font-size:52px;font-weight:900;color:rgba(0,229,255,0.035);line-height:1;}
+.cap-ico{width:46px;height:46px;margin-bottom:22px;}
+.cap-ttl{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:600;color:var(--cyan);margin-bottom:10px;letter-spacing:1px;}
+.cap-txt{font-size:14px;color:var(--steel);line-height:1.7;margin-bottom:18px;}
+.cap-specs{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.cap-specs li{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.cap-specs li::before{content:'';width:4px;height:4px;background:var(--orange);flex-shrink:0;}
+
+/* PROCESS */
+#process{padding:96px 60px;background:var(--bg2);}
+.proc-flow{display:flex;gap:0;position:relative;align-items:flex-start;}
+.proc-step{flex:1;padding:28px 22px;position:relative;opacity:0;transform:translateY(28px);transition:all 0.6s;}
+.proc-step.vis{opacity:1;transform:translateY(0);}
+.p-num{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:3px;margin-bottom:14px;}
+.p-ttl{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:0.5px;}
+.p-txt{font-size:13px;color:var(--muted);line-height:1.6;}
+.p-con{position:absolute;top:30px;right:-16px;width:32px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent);z-index:2;}
+.p-con::after{content:'';position:absolute;right:-4px;top:-3px;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid rgba(0,229,255,0.4);}
+
+/* MACHINES */
+#machines{padding:96px 60px;}
+.mach-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.mach-card{background:var(--bg2);border:1px solid var(--border);overflow:hidden;position:relative;opacity:0;transform:translateY(20px);transition:all 0.6s;}
+.mach-card.vis{opacity:1;transform:translateY(0);}
+.mach-disp{height:256px;background:var(--bg3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);}
+.mach-disp::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.05),transparent);animation:scan-h 4s infinite;}
+@keyframes scan-h{0%{left:-50%;}100%{left:110%;}}
+.mach-info{padding:26px;}
+.m-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;}
+.m-name{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.m-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;}
+.spec-box{padding:9px 12px;background:rgba(0,229,255,0.025);border:1px solid rgba(0,229,255,0.07);}
+.spec-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:3px;}
+.spec-val{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:600;color:var(--cyan);}
+
+/* MATERIALS */
+#materials{padding:80px 60px;background:var(--bg2);}
+.mat-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:44px;}
+.mat-pill{padding:11px 26px;border:1px solid var(--border);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;letter-spacing:1.5px;color:var(--steel);text-transform:uppercase;transition:all 0.3s;position:relative;overflow:hidden;cursor:default;}
+.mat-pill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(0,229,255,0.07);transition:left 0.3s;}
+.mat-pill:hover{border-color:var(--cyan);color:var(--cyan);}
+.mat-pill:hover::before{left:0;}
+
+/* INDUSTRIES */
+#industries{padding:96px 60px;}
+.ind-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:44px;}
+.ind-card{padding:26px 12px;text-align:center;border:1px solid rgba(0,229,255,0.09);transition:all 0.3s;cursor:default;position:relative;overflow:hidden;}
+.ind-card::before{content:'';position:absolute;bottom:-100%;left:0;width:100%;height:100%;background:linear-gradient(to top,rgba(0,229,255,0.07),transparent);transition:bottom 0.4s;}
+.ind-card:hover::before{bottom:0;}
+.ind-card:hover{border-color:var(--cyan);transform:translateY(-5px);}
+.ind-ico{font-size:28px;margin-bottom:12px;display:block;filter:grayscale(0.3);}
+.ind-nm{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--steel);text-transform:uppercase;}
+
+/* CONTACT */
+#contact{padding:96px 60px;background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.c-info h3{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:600;color:var(--cyan);letter-spacing:2px;margin-bottom:24px;}
+.c-line{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(0,229,255,0.07);}
+.c-line:last-of-type{border-bottom:none;}
+.c-lbl{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;min-width:90px;padding-top:2px;}
+.c-val{font-size:14px;font-weight:500;color:var(--text);line-height:1.6;}
+.c-file-box{margin-top:28px;padding:20px;border:1px solid rgba(0,229,255,0.18);background:rgba(0,229,255,0.025);}
+.c-form{display:flex;flex-direction:column;gap:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg input,.fg textarea,.fg select{width:100%;padding:12px 14px;background:rgba(0,229,255,0.03);border:1px solid rgba(0,229,255,0.13);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;transition:border 0.3s;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--cyan);background:rgba(0,229,255,0.05);}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted);}
+.fg textarea{resize:vertical;min-height:96px;}
+.fg select{appearance:none;cursor:pointer;color:var(--muted);}
+.fg select option{background:var(--bg3);color:var(--text);}
+.btn-submit{width:100%;padding:15px;background:var(--cyan);color:var(--bg);font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:2px;font-weight:700;border:none;cursor:pointer;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:all 0.3s;}
+.btn-submit:hover{background:#fff;transform:translateY(-2px);}
+
+/* FOOTER */
+footer{position:relative;z-index:10;padding:36px 60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.f-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:16px;color:var(--cyan);letter-spacing:4px;}
+.f-logo span{color:var(--orange);}
+.f-copy{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:all 0.7s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="#">HP <span>ENGINEERING</span></a>
+  <ul class="nav-links">
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#machines">Machines</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">GET QUOTE</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="pc"></canvas>
+  
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>SYSTEM ONLINE // HP ENGINEERING V3.0</div>
+    <h1 class="hero-title">
+      <span class="t1">PRECISION</span>
+      <span class="t2">MACHINING</span>
+      <span class="t3">VMC &amp; CNC EXCELLENCE</span>
+    </h1>
+    <p class="hero-sub">
+      Next-generation <em>VMC &amp; CNC manufacturing</em> with tolerances down to <em>±0.001mm</em> — engineering impossible geometries for aerospace, medical, and defense industries.
+    </p>
+    <div class="hero-acts">
+      <button class="btn1" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">REQUEST QUOTE</button>
+      <button class="btn2" onclick="document.getElementById('capabilities').scrollIntoView({behavior:'smooth'})">CAPABILITIES ↓</button>
+    </div>
+  </div>
+
+  <!-- Animated CNC Machine SVG -->
+  <div class="hero-machine">
+    <svg id="cnc-svg" viewBox="0 0 820 620" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.13"/>
+          <stop offset="100%" stop-color="#020408" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FF6B2B" stop-opacity="0.07"/>
+          <stop offset="100%" stop-color="#020408" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <marker id="ac" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#FF6B2B"/>
+        </marker>
+        <marker id="ac2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#00E5FF"/>
+        </marker>
+      </defs>
+
+      <!-- Background glows -->
+      <ellipse cx="410" cy="310" rx="300" ry="240" fill="url(#rg1)"/>
+      <ellipse cx="600" cy="280" rx="180" ry="150" fill="url(#rg2)"/>
+
+      <!-- MACHINE BASE -->
+      <rect x="70" y="440" width="660" height="90" rx="5" fill="#08131E" stroke="#143050" stroke-width="1.2"/>
+      <rect x="90" y="452" width="620" height="66" rx="3" fill="#050C15" stroke="#0d2035" stroke-width="0.5"/>
+      <!-- Base detail lines -->
+      <line x1="100" y1="475" x2="700" y2="475" stroke="#0e2840" stroke-width="0.5"/>
+      <line x1="100" y1="485" x2="700" y2="485" stroke="#0e2840" stroke-width="0.5"/>
+
+      <!-- MAIN COLUMN (left) -->
+      <rect x="110" y="100" width="130" height="350" rx="5" fill="#08131E" stroke="#143050" stroke-width="1.2"/>
+      <rect x="124" y="112" width="102" height="330" rx="3" fill="#050C15"/>
+      <!-- Column details -->
+      <rect x="130" y="125" width="90" height="8" rx="1" fill="#0A1A28" stroke="#0d2540" stroke-width="0.5"/>
+      <rect x="130" y="280" width="90" height="8" rx="1" fill="#0A1A28" stroke="#0d2540" stroke-width="0.5"/>
+      <line x1="175" y1="133" x2="175" y2="280" stroke="#0d2035" stroke-width="1"/>
+
+      <!-- GANTRY / TOP BEAM -->
+      <rect x="88" y="90" width="584" height="44" rx="5" fill="#0B1E30" stroke="#143050" stroke-width="1.2"/>
+      <rect x="96" y="96" width="568" height="32" rx="3" fill="#070F1A" stroke="#0d2035" stroke-width="0.5"/>
+      <!-- Rail channel on gantry -->
+      <rect x="96" y="108" width="568" height="8" rx="2" fill="#04080F" stroke="#00E5FF" stroke-width="0.4" opacity="0.5"/>
+      <!-- Ball screw hint -->
+      <line x1="100" y1="112" x2="660" y2="112" stroke="#00E5FF" stroke-width="0.4" stroke-dasharray="6 4" opacity="0.3"/>
+
+      <!-- SPINDLE ASSEMBLY (animated group) -->
+      <g id="spd-assy">
+        <!-- Saddle block that rides the gantry -->
+        <rect x="-50" y="88" width="100" height="20" rx="3" fill="#0F2538" stroke="#00E5FF" stroke-width="0.8" filter="url(#glow)"/>
+        <!-- Z-axis column -->
+        <rect x="-44" y="108" width="88" height="230" rx="4" fill="#0C1E30" stroke="#00E5FF" stroke-width="1.2" filter="url(#glow)"/>
+        <rect x="-36" y="114" width="72" height="216" rx="2" fill="#070E18"/>
+        <!-- LED strips on spindle body -->
+        <rect x="-38" y="114" width="3" height="216" rx="1" fill="#00E5FF" opacity="0.3"/>
+        <!-- Spindle motor housing -->
+        <rect x="-30" y="120" width="60" height="70" rx="2" fill="#0A1825" stroke="#00E5FF" stroke-width="0.6"/>
+        <!-- Tool holder taper -->
+        <path d="M-18,334 L18,334 L12,360 L-12,360 Z" fill="#0C1E30" stroke="#00E5FF" stroke-width="0.8"/>
+        <!-- Rotating tool group -->
+        <g id="tool-grp">
+          <circle cx="0" cy="365" r="20" fill="#04080E" stroke="#00E5FF" stroke-width="1" opacity="0.6"/>
+          <line x1="0" y1="345" x2="0" y2="385" stroke="#00E5FF" stroke-width="0.9" opacity="0.7"/>
+          <line x1="-20" y1="365" x2="20" y2="365" stroke="#00E5FF" stroke-width="0.9" opacity="0.7"/>
+          <line x1="-14" y1="351" x2="14" y2="379" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+          <line x1="14" y1="351" x2="-14" y2="379" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="0" cy="365" r="5" fill="#00E5FF" opacity="0.85" filter="url(#glow)"/>
+          <!-- Cutting insert -->
+          <rect x="-4" y="384" width="8" height="24" rx="1" fill="#FF6B2B" filter="url(#glow)"/>
+          <!-- Flutes -->
+          <path d="M-4,386 Q0,392 -4,398 Q0,404 -4,410" stroke="#c05020" stroke-width="1" fill="none"/>
+          <path d="M4,386 Q0,392 4,398 Q0,404 4,410" stroke="#c05020" stroke-width="1" fill="none"/>
+        </g>
+        <!-- Status LEDs on spindle body -->
+        <circle cx="-30" cy="140" r="3.5" fill="#00FF88" opacity="0.9" filter="url(#glow)"/>
+        <circle cx="-30" cy="156" r="3.5" fill="#00E5FF" opacity="0.8" filter="url(#glow)"/>
+        <circle cx="-30" cy="172" r="3.5" fill="#FF6B2B" opacity="0.7" filter="url(#glow)"/>
+        <!-- RPM display on spindle -->
+        <rect x="-30" y="200" width="60" height="22" rx="2" fill="#020810" stroke="#00E5FF" stroke-width="0.4"/>
+        <text id="rpm-txt" x="0" y="215" fill="#00E5FF" font-family="monospace" font-size="8" text-anchor="middle">8000 RPM</text>
+      </g>
+
+      <!-- WORK TABLE -->
+      <rect x="180" y="450" width="460" height="22" rx="3" fill="#0B1A28" stroke="#143050" stroke-width="1"/>
+      <rect x="196" y="445" width="428" height="16" rx="2" fill="#08111C" stroke="#00E5FF" stroke-width="0.4" opacity="0.4"/>
+      <!-- T-slots -->
+      <line x1="230" y1="447" x2="230" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="278" y1="447" x2="278" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="326" y1="447" x2="326" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="374" y1="447" x2="374" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="422" y1="447" x2="422" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="470" y1="447" x2="470" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="518" y1="447" x2="518" y2="462" stroke="#040810" stroke-width="3.5"/>
+      <line x1="566" y1="447" x2="566" y2="462" stroke="#040810" stroke-width="3.5"/>
+
+      <!-- WORKPIECE (complex aluminum block) -->
+      <g id="workpiece">
+        <rect x="320" y="408" width="160" height="40" rx="2" fill="#112540" stroke="#00E5FF" stroke-width="1"/>
+        <rect x="330" y="413" width="140" height="28" rx="1" fill="#0C1E34" stroke="#00E5FF" stroke-width="0.5" opacity="0.6"/>
+        <!-- Machined pocket -->
+        <rect x="345" y="416" width="60" height="16" rx="1" fill="#060D16" stroke="#00E5FF" stroke-width="0.4" opacity="0.8"/>
+        <rect x="395" y="416" width="60" height="16" rx="1" fill="#060D16" stroke="#00E5FF" stroke-width="0.4" opacity="0.8"/>
+        <!-- Bore holes -->
+        <circle cx="360" cy="428" r="6" fill="#030608" stroke="#00E5FF" stroke-width="0.5" opacity="0.7"/>
+        <circle cx="390" cy="428" r="6" fill="#030608" stroke="#00E5FF" stroke-width="0.5" opacity="0.7"/>
+        <circle cx="430" cy="428" r="6" fill="#030608" stroke="#00E5FF" stroke-width="0.5" opacity="0.7"/>
+        <circle cx="460" cy="428" r="6" fill="#030608" stroke="#00E5FF" stroke-width="0.5" opacity="0.7"/>
+      </g>
+
+      <!-- CHIP/COOLANT PARTICLES -->
+      <g id="chips" filter="url(#glow)">
+        <circle id="c1" cx="400" cy="410" r="2.5" fill="#FF6B2B" opacity="0"/>
+        <circle id="c2" cx="400" cy="410" r="1.5" fill="#FFB300" opacity="0"/>
+        <circle id="c3" cx="400" cy="410" r="2" fill="#FF6B2B" opacity="0"/>
+        <circle id="c4" cx="400" cy="410" r="1" fill="#00E5FF" opacity="0"/>
+        <circle id="c5" cx="400" cy="410" r="2" fill="#FF8C00" opacity="0"/>
+        <circle id="c6" cx="400" cy="410" r="1.5" fill="#FFD700" opacity="0"/>
+      </g>
+
+      <!-- COOLANT SPRAY (animated) -->
+      <g id="coolant-spray" opacity="0.5">
+        <line id="cs1" x1="400" y1="410" x2="380" y2="440" stroke="#00E5FF" stroke-width="0.5" opacity="0"/>
+        <line id="cs2" x1="400" y1="410" x2="420" y2="445" stroke="#00E5FF" stroke-width="0.5" opacity="0"/>
+        <line id="cs3" x1="400" y1="410" x2="390" y2="448" stroke="#00E5FF" stroke-width="0.5" opacity="0"/>
+      </g>
+
+      <!-- CONTROL PANEL -->
+      <g transform="translate(580,165)">
+        <rect width="152" height="218" rx="6" fill="#060E18" stroke="#143050" stroke-width="1.2"/>
+        <rect x="6" y="6" width="140" height="206" rx="4" fill="#030810"/>
+        <!-- Screen -->
+        <rect x="10" y="10" width="132" height="90" rx="3" fill="#020810" stroke="#00E5FF" stroke-width="0.6"/>
+        <!-- Scan line on screen -->
+        <rect id="sl" x="10" y="10" width="132" height="2" fill="#00E5FF" opacity="0.2"/>
+        <!-- Screen content -->
+        <text x="18" y="24" fill="#00E5FF" font-family="monospace" font-size="7.5" font-weight="bold" letter-spacing="0.5">HP VMC-500</text>
+        <text x="18" y="36" fill="#00FF88" font-family="monospace" font-size="6.5">&#9632; STATUS: MACHINING</text>
+        <line x1="10" y1="40" x2="142" y2="40" stroke="#0d2535" stroke-width="0.5"/>
+        <text x="18" y="52" fill="#7799BB" font-family="monospace" font-size="6">X: +284.352 mm</text>
+        <text x="18" y="62" fill="#7799BB" font-family="monospace" font-size="6">Y: +156.820 mm</text>
+        <text x="18" y="72" fill="#7799BB" font-family="monospace" font-size="6">Z: -045.200 mm</text>
+        <text x="18" y="82" fill="#FF6B2B" font-family="monospace" font-size="6">SPINDLE: 8000 RPM</text>
+        <text id="feed-txt" x="18" y="92" fill="#FFB300" font-family="monospace" font-size="6">FEED: 1200 mm/min</text>
+        <!-- Dials -->
+        <circle cx="32" cy="130" r="14" fill="#070F1A" stroke="#00E5FF" stroke-width="0.6"/>
+        <circle cx="32" cy="130" r="8" fill="#00E5FF" opacity="0.1"/>
+        <line id="d1" x1="32" y1="116" x2="32" y2="122" stroke="#00E5FF" stroke-width="1.5"/>
+        <circle cx="76" cy="130" r="14" fill="#070F1A" stroke="#00E5FF" stroke-width="0.6"/>
+        <circle cx="76" cy="130" r="8" fill="#00E5FF" opacity="0.1"/>
+        <line id="d2" x1="76" y1="116" x2="76" y2="122" stroke="#00E5FF" stroke-width="1.5"/>
+        <circle cx="120" cy="130" r="14" fill="#070F1A" stroke="#FF6B2B" stroke-width="0.6"/>
+        <circle cx="120" cy="130" r="8" fill="#FF6B2B" opacity="0.1"/>
+        <text x="116" y="134" fill="#FF6B2B" font-family="monospace" font-size="10" font-weight="bold">&#10005;</text>
+        <text x="20" y="152" fill="#2a4a6a" font-family="monospace" font-size="5" letter-spacing="0.5">SPEED</text>
+        <text x="64" y="152" fill="#2a4a6a" font-family="monospace" font-size="5" letter-spacing="0.5">FEED</text>
+        <text x="108" y="152" fill="#2a4a6a" font-family="monospace" font-size="5" letter-spacing="0.5">E-STOP</text>
+        <!-- Status indicator row -->
+        <circle cx="18" cy="172" r="4.5" fill="#00FF88" opacity="0.9" filter="url(#glow)"/>
+        <circle cx="36" cy="172" r="4.5" fill="#00E5FF" opacity="0.8" filter="url(#glow)"/>
+        <circle cx="54" cy="172" r="4.5" fill="#FFB300" opacity="0.75"/>
+        <circle cx="72" cy="172" r="4.5" fill="#00FF88" opacity="0.9" filter="url(#glow)"/>
+        <circle cx="90" cy="172" r="4.5" fill="#00E5FF" opacity="0.8"/>
+        <circle cx="108" cy="172" r="4.5" fill="#00FF88" opacity="0.85" filter="url(#glow)"/>
+        <circle cx="126" cy="172" r="4.5" fill="#00E5FF" opacity="0.7"/>
+        <text x="10" y="192" fill="#1a3a5a" font-family="monospace" font-size="5">PROG RUN &#47;&#47; TOOL: T12</text>
+        <text x="10" y="202" fill="#1a3a5a" font-family="monospace" font-size="5">PART: 00284 &#47;&#47; SEQ 048</text>
+      </g>
+
+      <!-- TOOL PATH VISUALIZATION -->
+      <g opacity="0.5">
+        <path id="tpath" d="M 340 408 Q 370 402 400 408 Q 430 402 460 408 Q 460 402 440 396 Q 420 390 400 396 Q 380 390 360 396 Z" fill="none" stroke="#00E5FF" stroke-width="0.8" stroke-dasharray="5 4"/>
+      </g>
+
+      <!-- AXIS ARROWS -->
+      <g transform="translate(68,478)" opacity="0.6">
+        <line x1="0" y1="0" x2="46" y2="0" stroke="#FF6B2B" stroke-width="1.5" marker-end="url(#ac)"/>
+        <line x1="0" y1="0" x2="0" y2="-46" stroke="#00E5FF" stroke-width="1.5" marker-end="url(#ac2)"/>
+        <text x="50" y="4" fill="#FF6B2B" font-family="monospace" font-size="11" font-weight="bold">X</text>
+        <text x="-14" y="-48" fill="#00E5FF" font-family="monospace" font-size="11" font-weight="bold">Z</text>
+        <!-- X axis helper -->
+        <text x="0" y="16" fill="#2a4a6a" font-family="monospace" font-size="7">+→</text>
+      </g>
+
+      <!-- DIMENSION CALLOUTS -->
+      <g opacity="0.35">
+        <line x1="320" y1="395" x2="480" y2="395" stroke="#00E5FF" stroke-width="0.5"/>
+        <line x1="320" y1="392" x2="320" y2="398" stroke="#00E5FF" stroke-width="0.5"/>
+        <line x1="480" y1="392" x2="480" y2="398" stroke="#00E5FF" stroke-width="0.5"/>
+        <text x="400" y="390" fill="#00E5FF" font-family="monospace" font-size="7" text-anchor="middle">160.000mm</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <div class="ticker-item"><span class="tval">±0.001mm</span><span class="tlbl">Precision Tolerance</span></div>
+    <div class="ticker-item"><span class="tval">3,500+</span><span class="tlbl">Parts Per Month</span></div>
+    <div class="ticker-item"><span class="tval">ISO 9001</span><span class="tlbl">Certified Quality</span></div>
+    <div class="ticker-item"><span class="tval">5-Axis</span><span class="tlbl">VMC Capability</span></div>
+    <div class="ticker-item"><span class="tval">24 / 7</span><span class="tlbl">Production Uptime</span></div>
+    <div class="ticker-item"><span class="tval">25+</span><span class="tlbl">Years Experience</span></div>
+    <div class="ticker-item"><span class="tval">98.7%</span><span class="tlbl">On-Time Delivery</span></div>
+    <div class="ticker-item"><span class="tval">12</span><span class="tlbl">CNC Machining Centers</span></div>
+    <div class="ticker-item"><span class="tval">±0.001mm</span><span class="tlbl">Precision Tolerance</span></div>
+    <div class="ticker-item"><span class="tval">3,500+</span><span class="tlbl">Parts Per Month</span></div>
+    <div class="ticker-item"><span class="tval">ISO 9001</span><span class="tlbl">Certified Quality</span></div>
+    <div class="ticker-item"><span class="tval">5-Axis</span><span class="tlbl">VMC Capability</span></div>
+    <div class="ticker-item"><span class="tval">24 / 7</span><span class="tlbl">Production Uptime</span></div>
+    <div class="ticker-item"><span class="tval">25+</span><span class="tlbl">Years Experience</span></div>
+    <div class="ticker-item"><span class="tval">98.7%</span><span class="tlbl">On-Time Delivery</span></div>
+    <div class="ticker-item"><span class="tval">12</span><span class="tlbl">CNC Machining Centers</span></div>
+  </div>
+</div>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="s-header reveal">
+    <span class="s-tag">// CORE CAPABILITIES</span>
+    <h2 class="s-title">Advanced <span>Manufacturing</span> Solutions</h2>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card reveal">
+      <span class="cap-num">01</span>
+      <svg class="cap-ico" viewBox="0 0 46 46" fill="none">
+        <rect x="6" y="4" width="34" height="38" rx="2" stroke="#00E5FF" stroke-width="1"/>
+        <rect x="14" y="10" width="18" height="26" rx="1" stroke="#00E5FF" stroke-width="0.7" opacity="0.45"/>
+        <line x1="23" y1="4" x2="23" y2="42" stroke="#FF6B2B" stroke-width="1"/>
+        <circle cx="23" cy="23" r="4" fill="#00E5FF" opacity="0.8"/>
+        <rect x="6" y="20" width="6" height="6" rx="1" fill="#00E5FF" opacity="0.15"/>
+        <rect x="34" y="20" width="6" height="6" rx="1" fill="#00E5FF" opacity="0.15"/>
+      </svg>
+      <div class="cap-ttl">VMC MACHINING</div>
+      <p class="cap-txt">State-of-the-art Vertical Machining Centers for complex 3D geometries, multi-feature parts, and high-precision surface finishes on any axis.</p>
+      <ul class="cap-specs">
+        <li>Travel: X-1100 × Y-600 × Z-600mm</li>
+        <li>Spindle: up to 15,000 RPM</li>
+        <li>ATC: 30+24 tool magazine</li>
+        <li>Repeatability: ±0.002mm</li>
+      </ul>
+    </div>
+    <div class="cap-card reveal" style="transition-delay:0.08s">
+      <span class="cap-num">02</span>
+      <svg class="cap-ico" viewBox="0 0 46 46" fill="none">
+        <circle cx="23" cy="23" r="18" stroke="#00E5FF" stroke-width="1"/>
+        <circle cx="23" cy="23" r="10" stroke="#00E5FF" stroke-width="0.6" opacity="0.4"/>
+        <line x1="23" y1="5" x2="23" y2="13" stroke="#FF6B2B" stroke-width="2"/>
+        <line x1="23" y1="33" x2="23" y2="41" stroke="#FF6B2B" stroke-width="2"/>
+        <line x1="5" y1="23" x2="13" y2="23" stroke="#FF6B2B" stroke-width="2"/>
+        <line x1="33" y1="23" x2="41" y2="23" stroke="#FF6B2B" stroke-width="2"/>
+        <rect x="19" y="19" width="8" height="8" rx="1" fill="#00E5FF" opacity="0.7"/>
+      </svg>
+      <div class="cap-ttl">CNC TURNING</div>
+      <p class="cap-txt">High-speed CNC lathes delivering precise cylindrical components, shafts, flanges, and complex turned parts with live tooling and Y-axis capability.</p>
+      <ul class="cap-specs">
+        <li>Max Diameter: Ø500mm</li>
+        <li>Max Length: 2000mm</li>
+        <li>Live tooling Y-axis milling</li>
+        <li>Surface Finish: Ra 0.4μm</li>
+      </ul>
+    </div>
+    <div class="cap-card reveal" style="transition-delay:0.16s">
+      <span class="cap-num">03</span>
+      <svg class="cap-ico" viewBox="0 0 46 46" fill="none">
+        <polygon points="23,4 42,42 4,42" stroke="#00E5FF" stroke-width="1" fill="none"/>
+        <polygon points="23,12 34,36 12,36" stroke="#00E5FF" stroke-width="0.6" opacity="0.4" fill="none"/>
+        <circle cx="23" cy="32" r="4" fill="#FF6B2B" opacity="0.8"/>
+        <line x1="23" y1="4" x2="23" y2="28" stroke="#00E5FF" stroke-width="0.5" opacity="0.4" stroke-dasharray="3 2"/>
+      </svg>
+      <div class="cap-ttl">5-AXIS MACHINING</div>
+      <p class="cap-txt">Simultaneous 5-axis for aerospace impellers, turbine blades, and intricate sculptured geometries — impossible to achieve with 3-axis, done in one setup.</p>
+      <ul class="cap-specs">
+        <li>Rotary: ±120° A, 360° C-axis</li>
+        <li>Positional Accuracy: 0.001°</li>
+        <li>Complex contouring</li>
+        <li>Single setup, full part</li>
+      </ul>
+    </div>
+    <div class="cap-card reveal" style="transition-delay:0.24s">
+      <span class="cap-num">04</span>
+      <svg class="cap-ico" viewBox="0 0 46 46" fill="none">
+        <rect x="4" y="18" width="38" height="10" rx="2" stroke="#00E5FF" stroke-width="1"/>
+        <line x1="4" y1="23" x2="42" y2="23" stroke="#FF6B2B" stroke-width="0.8" opacity="0.7"/>
+        <rect x="18" y="12" width="10" height="22" rx="1" stroke="#00E5FF" stroke-width="0.7" opacity="0.45"/>
+        <circle cx="23" cy="23" r="3" fill="#00E5FF" opacity="0.85"/>
+        <circle cx="12" cy="23" r="1.5" fill="#00E5FF" opacity="0.4"/>
+        <circle cx="34" cy="23" r="1.5" fill="#00E5FF" opacity="0.4"/>
+      </svg>
+      <div class="cap-ttl">WIRE EDM</div>
+      <p class="cap-txt">Electrical discharge machining for ultra-precise profiles, complex cutouts and keyways through any electrically conductive material regardless of hardness.</p>
+      <ul class="cap-specs">
+        <li>Wire Diameter: 0.1–0.3mm</li>
+        <li>Accuracy: ±0.003mm</li>
+        <li>Max cut height: 300mm</li>
+        <li>4-axis taper cutting</li>
+      </ul>
+    </div>
+    <div class="cap-card reveal" style="transition-delay:0.32s">
+      <span class="cap-num">05</span>
+      <svg class="cap-ico" viewBox="0 0 46 46" fill="none">
+        <rect x="8" y="8" width="30" height="30" rx="2" stroke="#00E5FF" stroke-width="1"/>
+        <rect x="14" y="14" width="18" height="18" rx="1" stroke="#00E5FF" stroke-width="0.6" opacity="0.4"/>
+        <line x1="8" y1="23" x2="38" y2="23" stroke="#FF6B2B" stroke-width="0.8"/>
+        <line x1="23" y1="8" x2="23" y2="38" stroke="#FF6B2B" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="23" cy="23" r="3.5" fill="#00E5FF" opacity="0.9"/>
+        <circle cx="13" cy="13" r="1.5" fill="#00E5FF" opacity="0.3"/>
+        <circle cx="33" cy="13" r="1.5" fill="#00E5FF" opacity="0.3"/>
+        <circle cx="13" cy="33" r="1.5" fill="#00E5FF" opacity="0.3"/>
+        <circle cx="33" cy="33" r="1.5" fill="#00E5FF" opacity="0.3"/>
+      </svg>
+      <div class="cap-ttl">CMM INSPECTION</div>
+      <p class="cap-txt">Zeiss CMM coordinate measuring machines ensuring 100% dimensional compliance with full GD&amp;T reporting, First Article Inspection, and PPAP documentation.</p>
+      <ul class="cap-specs">
+        <li>Range: 700×1000×600mm</li>
+        <li>Accuracy: 1.2μm</li>
+        <li>Full GD&amp;T reporting</li>
+        <li>FAIR / PPAP / FAI docs</li>
+      </ul>
+    </div>
+    <div class="cap-card reveal" style="transition-delay:0.40s">
+      <span class="cap-num">06</span>
+      <svg class="cap-ico" viewBox="0 0 46 46" fill="none">
+        <rect x="4" y="28" width="38" height="12" rx="2" stroke="#00E5FF" stroke-width="1"/>
+        <path d="M10,28 L18,8 L28,8 L36,28" stroke="#00E5FF" stroke-width="0.8" fill="none" opacity="0.55"/>
+        <circle cx="23" cy="17" r="6" stroke="#FF6B2B" stroke-width="1" fill="none"/>
+        <circle cx="23" cy="17" r="2.5" fill="#FF6B2B" opacity="0.8"/>
+        <line x1="23" y1="8" x2="23" y2="11" stroke="#FF6B2B" stroke-width="1"/>
+      </svg>
+      <div class="cap-ttl">SURFACE GRINDING</div>
+      <p class="cap-txt">Precision surface and cylindrical grinding for mirror-finish surfaces and ultra-tight flatness tolerances on critical mating and sealing components.</p>
+      <ul class="cap-specs">
+        <li>Table: 600×300mm</li>
+        <li>Flatness: 0.001mm/300mm</li>
+        <li>Surface finish: Ra 0.2μm</li>
+        <li>CNC-controlled dressing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="s-header reveal">
+    <span class="s-tag">// WORKFLOW</span>
+    <h2 class="s-title">Our <span>Manufacturing</span> Process</h2>
+  </div>
+  <div class="proc-flow">
+    <div class="proc-step reveal">
+      <div class="p-num">01 // DFM REVIEW</div>
+      <div class="p-ttl">DESIGN FOR MANUFACTURABILITY</div>
+      <p class="p-txt">Engineering team reviews CAD/CAM files, identifies optimization, confirms feasibility and provides DFM feedback before quoting.</p>
+      <div class="p-con"></div>
+    </div>
+    <div class="proc-step reveal" style="transition-delay:0.12s">
+      <div class="p-num">02 // CAM</div>
+      <div class="p-ttl">TOOLPATH GENERATION</div>
+      <p class="p-txt">Expert programmers create optimized G-code using Mastercam for maximum efficiency, surface quality, and tool life.</p>
+      <div class="p-con"></div>
+    </div>
+    <div class="proc-step reveal" style="transition-delay:0.24s">
+      <div class="p-num">03 // SETUP</div>
+      <div class="p-ttl">FIXTURING &amp; WORKHOLDING</div>
+      <p class="p-txt">Custom fixtures and zero-point clamping systems ensure repeatable sub-micron accuracy across full production runs.</p>
+      <div class="p-con"></div>
+    </div>
+    <div class="proc-step reveal" style="transition-delay:0.36s">
+      <div class="p-num">04 // MACHINE</div>
+      <div class="p-ttl">PRECISION MANUFACTURING</div>
+      <p class="p-txt">Automated CNC/VMC machining with in-process gauging and statistical process control monitoring every cycle.</p>
+      <div class="p-con"></div>
+    </div>
+    <div class="proc-step reveal" style="transition-delay:0.48s">
+      <div class="p-num">05 // QC</div>
+      <div class="p-ttl">DIMENSIONAL VERIFICATION</div>
+      <p class="p-txt">CMM inspection, surface roughness measurement, and full material traceability documentation for every batch shipped.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MACHINES -->
+<section id="machines">
+  <div class="s-header reveal">
+    <span class="s-tag">// EQUIPMENT</span>
+    <h2 class="s-title">Machine <span>Fleet</span></h2>
+  </div>
+  <div class="mach-grid">
+    <div class="mach-card reveal">
+      <div class="mach-disp">
+        <svg viewBox="0 0 400 246" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <defs><radialGradient id="mg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00E5FF" stop-opacity="0.1"/><stop offset="100%" stop-color="#020810" stop-opacity="0"/></radialGradient></defs>
+          <rect width="400" height="246" fill="#03070E"/>
+          <ellipse cx="200" cy="123" rx="160" ry="100" fill="url(#mg1)"/>
+          <rect x="50" y="30" width="300" height="180" rx="4" fill="#08131E" stroke="#143050" stroke-width="1"/>
+          <rect x="60" y="38" width="280" height="164" rx="2" fill="#050C14"/>
+          <rect x="60" y="38" width="280" height="8" rx="2" fill="#0A1825" stroke="#00E5FF" stroke-width="0.4" opacity="0.5"/>
+          <rect x="155" y="38" width="90" height="120" rx="2" fill="#0C1E30" stroke="#00E5FF" stroke-width="0.8"/>
+          <rect x="165" y="46" width="70" height="104" rx="1" fill="#070E18"/>
+          <rect x="168" y="155" width="64" height="34" rx="2" fill="#0A1825" stroke="#00E5FF" stroke-width="0.8"/>
+          <g id="ms1">
+            <circle cx="200" cy="176" r="14" fill="#04080F" stroke="#00E5FF" stroke-width="0.8"/>
+            <line x1="200" y1="162" x2="200" y2="190" stroke="#00E5FF" stroke-width="0.7"/>
+            <line x1="186" y1="176" x2="214" y2="176" stroke="#00E5FF" stroke-width="0.7"/>
+            <circle cx="200" cy="176" r="4" fill="#00E5FF" opacity="0.9"/>
+            <rect x="197" y="190" width="6" height="14" fill="#FF6B2B" rx="1"/>
+          </g>
+          <rect x="302" y="60" width="40" height="130" rx="2" fill="#060D18" stroke="#143050" stroke-width="0.5"/>
+          <rect x="306" y="64" width="32" height="52" rx="1" fill="#020810" stroke="#00E5FF" stroke-width="0.3"/>
+          <text x="312" y="78" fill="#00E5FF" font-family="monospace" font-size="5">VMC-500</text>
+          <text x="309" y="88" fill="#00FF88" font-family="monospace" font-size="4">RUN ▶</text>
+          <text x="309" y="98" fill="#7799BB" font-family="monospace" font-size="4">X+284</text>
+          <text x="309" y="107" fill="#7799BB" font-family="monospace" font-size="4">Y+156</text>
+          <circle cx="312" cy="136" r="7" fill="#070F1A" stroke="#00E5FF" stroke-width="0.5"/>
+          <circle cx="330" cy="136" r="7" fill="#070F1A" stroke="#FF6B2B" stroke-width="0.5"/>
+          <circle cx="312" cy="156" r="3" fill="#00FF88" opacity="0.8"/>
+          <circle cx="322" cy="156" r="3" fill="#00E5FF" opacity="0.8"/>
+          <circle cx="332" cy="156" r="3" fill="#FF6B2B" opacity="0.6"/>
+          <rect x="68" y="190" width="240" height="12" rx="1" fill="#0B1A28" stroke="#143050" stroke-width="0.5"/>
+          <rect x="158" y="183" width="84" height="8" rx="1" fill="#142540" stroke="#00E5FF" stroke-width="0.4"/>
+          <text x="60" y="235" fill="#1a3a5a" font-family="monospace" font-size="6.5">HP VMC-500 // SIEMENS 840D SL</text>
+        </svg>
+      </div>
+      <div class="mach-info">
+        <div class="m-tag">VMC-500 SERIES</div>
+        <div class="m-name">Vertical Machining Center</div>
+        <p class="m-desc">Doosan DNM series with Siemens 840D controller. 30-tool ATC, through-spindle coolant, probing, and high-pressure chip conveyor.</p>
+        <div class="spec-grid">
+          <div class="spec-box"><div class="spec-lbl">X TRAVEL</div><div class="spec-val">1100mm</div></div>
+          <div class="spec-box"><div class="spec-lbl">Y TRAVEL</div><div class="spec-val">600mm</div></div>
+          <div class="spec-box"><div class="spec-lbl">SPINDLE</div><div class="spec-val">15,000 RPM</div></div>
+          <div class="spec-box"><div class="spec-lbl">POWER</div><div class="spec-val">22 kW</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mach-card reveal" style="transition-delay:0.12s">
+      <div class="mach-disp">
+        <svg viewBox="0 0 400 246" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <defs><radialGradient id="mg2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FF6B2B" stop-opacity="0.09"/><stop offset="100%" stop-color="#020810" stop-opacity="0"/></radialGradient></defs>
+          <rect width="400" height="246" fill="#03070E"/>
+          <ellipse cx="200" cy="123" rx="160" ry="100" fill="url(#mg2)"/>
+          <!-- Lathe body -->
+          <rect x="30" y="50" width="340" height="140" rx="4" fill="#08131E" stroke="#143050" stroke-width="1"/>
+          <!-- Headstock -->
+          <rect x="42" y="60" width="90" height="110" rx="2" fill="#0C1E30" stroke="#FF6B2B" stroke-width="0.9"/>
+          <circle cx="87" cy="115" r="32" fill="#060D16" stroke="#FF6B2B" stroke-width="1"/>
+          <circle cx="87" cy="115" r="20" fill="#08121C" stroke="#FF6B2B" stroke-width="0.5"/>
+          <circle cx="87" cy="115" r="9" fill="#FF6B2B" opacity="0.2"/>
+          <!-- Chuck jaws -->
+          <rect x="80" y="84" width="14" height="8" rx="1" fill="#142A40" stroke="#FF6B2B" stroke-width="0.5"/>
+          <rect x="80" y="123" width="14" height="8" rx="1" fill="#142A40" stroke="#FF6B2B" stroke-width="0.5"/>
+          <rect x="60" y="109" width="8" height="12" rx="1" fill="#142A40" stroke="#FF6B2B" stroke-width="0.5"/>
+          <rect x="106" y="109" width="8" height="12" rx="1" fill="#142A40" stroke="#FF6B2B" stroke-width="0.5"/>
+          <!-- Chuck center -->
+          <circle cx="87" cy="115" r="4" fill="#FF6B2B" opacity="0.7"/>
+          <!-- Spindle bar -->
+          <rect x="87" y="110" width="220" height="10" rx="1" fill="#112030" stroke="#FF6B2B" stroke-width="0.4"/>
+          <!-- Tailstock -->
+          <rect x="308" y="75" width="52" height="100" rx="2" fill="#08131E" stroke="#143050" stroke-width="0.8"/>
+          <rect x="318" y="110" width="32" height="10" rx="1" fill="#0C1E2E" stroke="#7799BB" stroke-width="0.4"/>
+          <!-- Turret (live tooling) -->
+          <rect x="200" y="92" width="68" height="58" rx="4" fill="#0B1E30" stroke="#00E5FF" stroke-width="0.9"/>
+          <polygon points="234,82 246,102 222,102" fill="#00E5FF" opacity="0.7"/>
+          <!-- Turret tools -->
+          <line x1="200" y1="115" x2="184" y2="115" stroke="#00E5FF" stroke-width="2" opacity="0.6"/>
+          <line x1="268" y1="115" x2="284" y2="115" stroke="#00E5FF" stroke-width="2" opacity="0.6"/>
+          <!-- Chip pan -->
+          <rect x="42" y="185" width="316" height="8" rx="1" fill="#0B1A28" stroke="#143050" stroke-width="0.5"/>
+          <text x="42" y="235" fill="#1a3a5a" font-family="monospace" font-size="6.5">HP CNC-T300 // FANUC 0i-TD LIVE</text>
+        </svg>
+      </div>
+      <div class="mach-info">
+        <div class="m-tag">CNC-T300 SERIES</div>
+        <div class="m-name">CNC Turning Center</div>
+        <p class="m-desc">Doosan PUMA with FANUC 0i-TD. Live tooling Y-axis, bar feeder integration, and sub-spindle for complete part machining in one cycle.</p>
+        <div class="spec-grid">
+          <div class="spec-box"><div class="spec-lbl">MAX Ø</div><div class="spec-val">Ø500mm</div></div>
+          <div class="spec-box"><div class="spec-lbl">MAX LENGTH</div><div class="spec-val">1500mm</div></div>
+          <div class="spec-box"><div class="spec-lbl">SPINDLE</div><div class="spec-val">3500 RPM</div></div>
+          <div class="spec-box"><div class="spec-lbl">LIVE TOOLS</div><div class="spec-val">12 Station</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section id="materials">
+  <div class="s-header reveal">
+    <span class="s-tag">// MATERIALS</span>
+    <h2 class="s-title">Materials We <span>Machine</span></h2>
+  </div>
+  <div class="mat-row">
+    <div class="mat-pill">Aluminum 6061-T6</div>
+    <div class="mat-pill">Stainless 316L</div>
+    <div class="mat-pill">Titanium Ti-6Al-4V</div>
+    <div class="mat-pill">Inconel 718</div>
+    <div class="mat-pill">Tool Steel D2</div>
+    <div class="mat-pill">Brass C360</div>
+    <div class="mat-pill">Copper C110</div>
+    <div class="mat-pill">PEEK</div>
+    <div class="mat-pill">Delrin / Acetal</div>
+    <div class="mat-pill">Carbon Steel EN8</div>
+    <div class="mat-pill">EN36 Alloy Steel</div>
+    <div class="mat-pill">Phosphor Bronze</div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="s-header reveal">
+    <span class="s-tag">// SECTORS</span>
+    <h2 class="s-title">Industries <span>Served</span></h2>
+  </div>
+  <div class="ind-grid">
+    <div class="ind-card reveal"><span class="ind-ico">✈</span><div class="ind-nm">Aerospace</div></div>
+    <div class="ind-card reveal" style="transition-delay:0.07s"><span class="ind-ico">⚕</span><div class="ind-nm">Medical</div></div>
+    <div class="ind-card reveal" style="transition-delay:0.14s"><span class="ind-ico">🛡</span><div class="ind-nm">Defense</div></div>
+    <div class="ind-card reveal" style="transition-delay:0.21s"><span class="ind-ico">⚙</span><div class="ind-nm">Automotive</div></div>
+    <div class="ind-card reveal" style="transition-delay:0.28s"><span class="ind-ico">⚡</span><div class="ind-nm">Energy</div></div>
+    <div class="ind-card reveal" style="transition-delay:0.35s"><span class="ind-ico">🔬</span><div class="ind-nm">Semiconductor</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-header reveal">
+    <span class="s-tag">// GET IN TOUCH</span>
+    <h2 class="s-title">Request a <span>Quote</span></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="c-info reveal">
+      <h3>HP ENGINEERING</h3>
+      <div class="c-line">
+        <span class="c-lbl">LOCATION</span>
+        <span class="c-val">Plot 47, Industrial Area Phase-II<br>Pune, Maharashtra 411018, India</span>
+      </div>
+      <div class="c-line">
+        <span class="c-lbl">EMAIL</span>
+        <span class="c-val" style="color:var(--cyan)">quote@hpengineering.in</span>
+      </div>
+      <div class="c-line">
+        <span class="c-lbl">PHONE</span>
+        <span class="c-val">+91 20 2612 XXXX</span>
+      </div>
+      <div class="c-line">
+        <span class="c-lbl">HOURS</span>
+        <span class="c-val">Mon – Sat: 08:00 – 20:00 IST</span>
+      </div>
+      <div class="c-line">
+        <span class="c-lbl">CERTS</span>
+        <span class="c-val">ISO 9001:2015 · AS9100D · IATF 16949</span>
+      </div>
+      <div class="c-file-box">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:2px;margin-bottom:10px;">⬆ UPLOAD STEP / IGES / DXF</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;">Upload your CAD file for automated DFM check and quotation within 4 business hours. All formats accepted.</p>
+      </div>
+    </div>
+    <div class="c-form reveal" style="transition-delay:0.15s">
+      <div class="form-row">
+        <div class="fg"><input type="text" placeholder="Full Name"></div>
+        <div class="fg"><input type="email" placeholder="Email Address"></div>
+      </div>
+      <div class="fg"><input type="text" placeholder="Company Name"></div>
+      <div class="fg">
+        <select>
+          <option value="" disabled selected>Select Service Required</option>
+          <option>VMC Machining</option>
+          <option>CNC Turning</option>
+          <option>5-Axis Machining</option>
+          <option>Wire EDM</option>
+          <option>Surface Grinding</option>
+          <option>CMM Inspection</option>
+          <option>Complete Part Supply</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="fg"><input type="number" placeholder="Quantity Required"></div>
+        <div class="fg"><input type="text" placeholder="Material (e.g. Al 6061-T6)"></div>
+      </div>
+      <div class="fg"><textarea placeholder="Project description, tolerance requirements, lead time expectations..."></textarea></div>
+      <button class="btn-submit">SUBMIT QUOTE REQUEST →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">HP <span>ENGINEERING</span></div>
+  <div class="f-copy">© 2026 HP ENGINEERING Pvt. Ltd. // ALL RIGHTS RESERVED</div>
+  <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);">ISO 9001:2015 CERTIFIED</div>
+</footer>
+
+<script>
+// PARTICLE CANVAS
+const cv = document.getElementById('pc');
+const cx = cv.getContext('2d');
+let W, H, pts = [];
+function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}
+resize();
+window.addEventListener('resize',resize);
+
+class P {
+  constructor(){this.r();}
+  r(){
+    this.x=Math.random()*W; this.y=Math.random()*H;
+    this.sz=Math.random()*1.4+0.3;
+    this.vx=(Math.random()-0.5)*0.25; this.vy=(Math.random()-0.5)*0.25;
+    this.a=Math.random()*0.55+0.08;
+    this.col=Math.random()>0.88?'#FF6B2B':'#00E5FF';
+    this.tw=Math.random()*Math.PI*2;
+  }
+  u(){
+    this.x+=this.vx; this.y+=this.vy; this.tw+=0.018;
+    if(this.x<0||this.x>W||this.y<0||this.y>H)this.r();
+  }
+  d(){
+    cx.save();
+    cx.globalAlpha=this.a*(0.65+0.35*Math.sin(this.tw));
+    cx.fillStyle=this.col;
+    cx.shadowBlur=5; cx.shadowColor=this.col;
+    cx.beginPath(); cx.arc(this.x,this.y,this.sz,0,Math.PI*2); cx.fill();
+    cx.restore();
+  }
+}
+for(let i=0;i<130;i++) pts.push(new P());
+
+function drawEdges(){
+  for(let i=0;i<pts.length;i++){
+    for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<95){
+        cx.save();
+        cx.globalAlpha=(1-d/95)*0.075;
+        cx.strokeStyle='#00E5FF'; cx.lineWidth=0.5;
+        cx.beginPath(); cx.moveTo(pts[i].x,pts[i].y); cx.lineTo(pts[j].x,pts[j].y); cx.stroke();
+        cx.restore();
+      }
+    }
+  }
+}
+
+function loop(){
+  cx.clearRect(0,0,W,H);
+  drawEdges();
+  pts.forEach(p=>{p.u();p.d();});
+  requestAnimationFrame(loop);
+}
+loop();
+
+// CNC MACHINE ANIMATION
+let ang=0, spX=350, spDir=1, slY=10, dialAng=0;
+
+function machineAnim(){
+  ang+=2.5;
+  dialAng+=1.2;
+
+  // Spindle rotation
+  const tg = document.getElementById('tool-grp');
+  if(tg) tg.setAttribute('transform',`rotate(${ang})`);
+
+  // Spindle horizontal traverse
+  spX += 0.5 * spDir;
+  if(spX > 430) spDir=-1;
+  if(spX < 240) spDir=1;
+  const sa = document.getElementById('spd-assy');
+  if(sa) sa.setAttribute('transform',`translate(${spX},0)`);
+
+  // Scan line on control panel
+  slY += 0.6;
+  if(slY > 88) slY = 10;
+  const sl = document.getElementById('sl');
+  if(sl) sl.setAttribute('y', 10 + slY);
+
+  // Dial rotation
+  const d1 = document.getElementById('d1'), d2 = document.getElementById('d2');
+  if(d1){
+    const x = 32 + 8*Math.sin(dialAng*Math.PI/180);
+    const y = 130 - 8*Math.cos(dialAng*Math.PI/180);
+    d1.setAttribute('x1','32'); d1.setAttribute('y1','130');
+    d1.setAttribute('x2', x.toFixed(1)); d1.setAttribute('y2', y.toFixed(1));
+  }
+  if(d2){
+    const x = 76 + 8*Math.sin((dialAng*0.7)*Math.PI/180);
+    const y = 130 - 8*Math.cos((dialAng*0.7)*Math.PI/180);
+    d2.setAttribute('x1','76'); d2.setAttribute('y1','130');
+    d2.setAttribute('x2', x.toFixed(1)); d2.setAttribute('y2', y.toFixed(1));
+  }
+
+  // Chip particles
+  const chipsData = [
+    ['c1', 55, 2.2], ['c2', 38, 1.5], ['c3', 65, 1.9],
+    ['c4', 45, 1.2], ['c5', 50, 2.0], ['c6', 42, 1.6]
+  ];
+  const now = Date.now();
+  chipsData.forEach(([id,speed,phase], i) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const t = ((now/500 + i*0.55 + phase) % 1);
+    const baseX = spX;
+    const baseY = 410;
+    const angle = (110 + i*15) * Math.PI/180;
+    el.setAttribute('cx', (baseX + Math.cos(angle)*speed*t).toFixed(1));
+    el.setAttribute('cy', (baseY - Math.sin(angle)*speed*t).toFixed(1));
+    el.setAttribute('opacity', ((1-t)*0.9).toFixed(2));
+  });
+
+  // Coolant spray
+  const cs = ['cs1','cs2','cs3'];
+  cs.forEach((id,i) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const t = ((now/400 + i*0.33) % 1);
+    el.setAttribute('opacity', ((1-t)*0.6).toFixed(2));
+    const angles = [130, 150, 140];
+    const a = angles[i] * Math.PI/180;
+    el.setAttribute('x1', spX.toFixed(1));
+    el.setAttribute('y1', '413');
+    el.setAttribute('x2', (spX + Math.cos(a)*35*t).toFixed(1));
+    el.setAttribute('y2', (413 + Math.sin(a)*35*t).toFixed(1));
+  });
+
+  // Update RPM text dynamically
+  const rpmEl = document.getElementById('rpm-txt');
+  if(rpmEl){
+    const rpm = 7800 + Math.round(Math.sin(now/3000)*400);
+    rpmEl.textContent = rpm + ' RPM';
+  }
+  const feedEl = document.getElementById('feed-txt');
+  if(feedEl){
+    const feed = 1180 + Math.round(Math.sin(now/2000)*80);
+    feedEl.textContent = 'FEED: ' + feed + ' mm/min';
+  }
+
+  // VMC machine card spindle
+  const ms1 = document.getElementById('ms1');
+  if(ms1) ms1.setAttribute('transform',`rotate(${ang*0.8},200,176)`);
+
+  requestAnimationFrame(machineAnim);
+}
+machineAnim();
+
+// SCROLL REVEAL
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.proc-step,.mach-card').forEach(el=>obs.observe(el));
+
+// HOLOGRAPHIC CARD TILT
+document.querySelectorAll('.cap-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width;
+    const y=(e.clientY-r.top)/r.height;
+    card.style.transform=`perspective(900px) rotateX(${-(y-0.5)*7}deg) rotateY(${(x-0.5)*7}deg) translateZ(4px)`;
+    const gx = x*100, gy = y*100;
+    card.style.background=`radial-gradient(circle at ${gx}% ${gy}%, rgba(0,229,255,0.065), var(--bg2) 60%)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+    card.style.background='';
+  });
+});
+
+// MACHINE CARD TILT
+document.querySelectorAll('.mach-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width;
+    const y=(e.clientY-r.top)/r.height;
+    card.style.transform=`perspective(1200px) rotateX(${-(y-0.5)*4}deg) rotateY(${(x-0.5)*4}deg) scale(1.01)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';});
+});
+
+// NAV scroll opacity
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('nav');
+  nav.style.background=window.scrollY>60?'rgba(2,4,8,0.96)':'rgba(2,4,8,0.7)';
+});
+
+// Staggered hero fade-in
+document.querySelector('.hero-badge').style.opacity='0';
+document.querySelector('.hero-title').style.opacity='0';
+document.querySelector('.hero-sub').style.opacity='0';
+document.querySelector('.hero-acts').style.opacity='0';
+setTimeout(()=>{
+  document.querySelector('.hero-badge').style.cssText+='opacity:1;transition:opacity 0.6s ease;';
+},200);
+setTimeout(()=>{
+  document.querySelector('.hero-title').style.cssText+='opacity:1;transition:opacity 0.7s ease;';
+},500);
+setTimeout(()=>{
+  document.querySelector('.hero-sub').style.cssText+='opacity:1;transition:opacity 0.8s ease;';
+},900);
+setTimeout(()=>{
+  document.querySelector('.hero-acts').style.cssText+='opacity:1;transition:opacity 0.8s ease;';
+},1200);
+</script>
+</body>
+</html>
