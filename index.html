@@ -188,6 +188,133 @@ footer{position:relative;z-index:10;padding:36px 60px;border-top:1px solid var(-
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:all 0.7s ease;}
 .reveal.vis{opacity:1;transform:translateY(0);}
+
+/* ── HAMBURGER ── */
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;z-index:1001;}
+.nav-ham span{display:block;width:22px;height:2px;background:var(--cyan);border-radius:1px;transition:all 0.3s;}
+.nav-ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.nav-ham.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ── HERO VIGNETTE (studio cinematic feel) ── */
+#hero::after{
+  content:'';position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:
+    radial-gradient(ellipse 65% 80% at 30% 50%, transparent 40%, rgba(2,4,8,0.55) 100%),
+    linear-gradient(to right, rgba(2,4,8,0.18) 0%, transparent 50%);
+}
+/* Section divider accent */
+section+section::before,.ticker-wrap+section::before{
+  content:'';display:block;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,0.12) 30%,rgba(0,229,255,0.12) 70%,transparent);
+  margin-bottom:0;
+}
+/* Subtle glow under s-tag */
+.s-tag{position:relative;display:inline-block;}
+.s-tag::after{
+  content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
+  width:30px;height:1px;background:var(--cyan);opacity:0.5;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET  ≤1100px
+═══════════════════════════════════════════ */
+@media(max-width:1100px){
+  .cap-grid{grid-template-columns:repeat(2,1fr);}
+  .ind-grid{grid-template-columns:repeat(3,1fr);}
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — MOBILE/TABLET  ≤900px
+═══════════════════════════════════════════ */
+@media(max-width:900px){
+  /* NAV */
+  nav{padding:12px 20px;}
+  .nav-links{
+    display:none;position:fixed;top:56px;left:0;right:0;bottom:0;
+    background:rgba(2,4,8,0.97);backdrop-filter:blur(32px);
+    flex-direction:column;justify-content:center;align-items:center;
+    gap:0;list-style:none;border-top:1px solid var(--border);
+    z-index:999;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{width:100%;text-align:center;border-bottom:1px solid rgba(0,229,255,0.06);}
+  .nav-links a{display:block;padding:18px 24px;font-size:14px;letter-spacing:3px;}
+  .nav-cta{display:none;}
+  .nav-ham{display:flex;}
+
+  /* HERO */
+  #hero{
+    height:auto;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:80px;padding-bottom:48px;
+  }
+  .hero-content{padding:0 20px;max-width:100%;}
+  .hero-sub{max-width:100%;font-size:15px;}
+  .hero-machine{
+    position:absolute;right:-10%;top:50%;width:110%;
+    opacity:0.13;transform:translateY(-50%);z-index:2;
+    pointer-events:none;
+  }
+  .hero-acts{flex-direction:column;align-items:stretch;gap:10px;}
+  .btn1,.btn2{text-align:center;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+
+  /* SECTIONS */
+  #capabilities,#process,#machines,#materials,#industries,#contact{
+    padding:64px 20px;
+  }
+  .s-header{margin-bottom:40px;}
+
+  /* CAPABILITIES */
+  .cap-grid{grid-template-columns:1fr;gap:1px;}
+
+  /* PROCESS */
+  .proc-flow{flex-direction:column;gap:0;}
+  .proc-step{padding:22px 16px 22px 20px;border-left:1px solid rgba(0,229,255,0.15);margin-left:18px;}
+  .proc-step:last-child{border-left-color:transparent;}
+  .p-con{display:none;}
+  /* numbered dot on timeline */
+  .p-num{position:relative;}
+  .p-num::before{
+    content:'';position:absolute;left:-28px;top:50%;transform:translateY(-50%);
+    width:8px;height:8px;background:var(--orange);border-radius:50%;
+    box-shadow:0 0 8px var(--orange);
+  }
+
+  /* MACHINES */
+  .mach-grid{grid-template-columns:1fr;}
+
+  /* INDUSTRIES */
+  .ind-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
+
+  /* CONTACT */
+  .contact-grid{grid-template-columns:1fr;gap:40px;}
+  .form-row{grid-template-columns:1fr;}
+
+  /* FOOTER */
+  footer{
+    padding:24px 20px;flex-direction:column;align-items:flex-start;gap:10px;
+    text-align:left;
+  }
+
+  /* TICKER — touch-scroll hint */
+  .ticker-wrap{-webkit-overflow-scrolling:touch;}
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE  ≤480px
+═══════════════════════════════════════════ */
+@media(max-width:480px){
+  .hero-title{line-height:0.95;}
+  .hero-title .t3{font-size:0.32em;letter-spacing:5px;}
+  .tval{font-size:16px;}
+  .tlbl{font-size:10px;}
+  .ind-grid{grid-template-columns:repeat(2,1fr);}
+  .cap-card{padding:28px 20px;}
+  .spec-grid{grid-template-columns:1fr 1fr;}
+  /* hero machine — almost invisible on tiny screens */
+  .hero-machine{opacity:0.08;}
+}
 </style>
 </head>
 <body>
@@ -202,6 +329,9 @@ footer{position:relative;z-index:10;padding:36px 60px;border-top:1px solid var(-
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta">GET QUOTE</a>
+  <button class="nav-ham" id="nav-ham" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1008,6 +1138,25 @@ window.addEventListener('scroll',()=>{
   const nav=document.getElementById('nav');
   nav.style.background=window.scrollY>60?'rgba(2,4,8,0.96)':'rgba(2,4,8,0.7)';
 });
+
+// HAMBURGER MENU
+(function(){
+  const ham = document.getElementById('nav-ham');
+  const links = document.querySelector('.nav-links');
+  ham.addEventListener('click', function(){
+    ham.classList.toggle('open');
+    links.classList.toggle('open');
+    document.body.style.overflow = links.classList.contains('open') ? 'hidden' : '';
+  });
+  // Close on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      ham.classList.remove('open');
+      links.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
 
 // Staggered hero fade-in
 document.querySelector('.hero-badge').style.opacity='0';
